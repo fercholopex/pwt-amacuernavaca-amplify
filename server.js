@@ -15,7 +15,7 @@ const loggerMiddleware = (req, res, next) => {
 };
 // Configuración de CORS
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://main.ddwo4j04n8ass.amplifyapp.com/servicios'],
+    origin: 'https://main.ddwo4j04n8ass.amplifyapp.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
