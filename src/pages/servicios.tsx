@@ -48,7 +48,7 @@ const Servicios = () => {
     if (typeof window === 'undefined') return;
     const fetchClientes = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/catalogos/clientes', {
+        const response = await fetch('https://main.ddwo4j04n8ass.amplifyapp.com:3306/api/catalogos/clientes', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -247,7 +247,7 @@ const Servicios = () => {
     };
     
     try {
-      const response = await fetch('http://localhost:5000/api/servicios', {
+      const response = await fetch('https://main.ddwo4j04n8ass.amplifyapp.com:3306/api/servicios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -273,7 +273,7 @@ const Servicios = () => {
         minutos: Math.round(routeInfo.durationInMin)
       };
       
-      const pdfUrl = `http://localhost:5000/api/servicios/pdf/${data.id_servicio}`;
+      const pdfUrl = `https://main.ddwo4j04n8ass.amplifyapp.com:3306/api/servicios/pdf/${data.id_servicio}`;
       const pdfResponse = await fetch(pdfUrl, { method: 'GET' });
       
       if (!pdfResponse.ok) {
