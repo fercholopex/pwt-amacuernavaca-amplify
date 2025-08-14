@@ -17,7 +17,6 @@
     "@genkit-ai/googleai": "1.6.0",
     "@iconify/icons-ic": "1.2.13",
     "@iconify/react": "6.0.0",
-    "@next/swc-win32-x64-msvc": "^14.0.4",
     "@react-google-maps/api": "2.20.6",
     "android-sms-gateway": "2.0.0",
     "aws-amplify": "^6.15.5",
