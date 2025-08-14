@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/catalogos": "pages/catalogos.html",
+  "/_modalcotizaciones": "pages/_modalcotizaciones.html",
+  "/": "pages/index.html",
+  "/precotizaciones": "pages/precotizaciones.html",
+  "/cotizaciones": "pages/cotizaciones.html",
+  "/servicios": "pages/servicios.html",
+  "/404": "pages/404.html"
+}

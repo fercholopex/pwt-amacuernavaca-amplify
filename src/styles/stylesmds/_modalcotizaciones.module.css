@@ -1,0 +1,761 @@
+/* Overlay y Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.modalContent {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #f39c12 #eee;
+}
+.modalContent::-webkit-scrollbar {
+  width: 8px;
+}
+.modalContent::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 10px;
+}
+.modalContent::-webkit-scrollbar-thumb {
+  background-color: #f39c12;
+  border-radius: 10px;
+}
+/* Modal para reasignar operador */
+.reasignarOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;
+}
+.reasignarDialog {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+.reasignarDialog h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+.reasignarDialog p {
+  color: #666;
+  margin-bottom: 20px;
+}
+.reasignarButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+/* Encabezado y subtítulos */
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 25px;
+  border-bottom: 1px solid #eee;
+  background-color: #f8f9fa;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.modalHeader h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modalHeader h2 i {
+  color: #f39c12;
+}
+.estadoBadge {
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.estadoPendiente {
+  background-color: rgba(243, 156, 18, 0.2);
+  color: #d35400;
+}
+.estadoAsignado {
+  background-color: rgba(243, 156, 18, 0.2);
+  color: #d35400;
+}
+.estadoEnprogreso, .estadoIniciado {
+  background-color: #d6eaf8;
+  color: #2980b9;
+}
+.estadoCompletado {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #27ae60;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.estadoCancelado {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #c0392b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+/* Tabs de navegación */
+.tabsContainer {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  background-color: #f8f9fa;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+.tab {
+  padding: 15px 20px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tab i {
+  font-size: 0.9rem;
+}
+.tab:hover {
+  background-color: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+.tabActive {
+  color: #f39c12;
+  border-bottom: 3px solid #f39c12;
+  background-color: rgba(243, 156, 18, 0.1);
+}
+/* Cuerpo del Modal */
+.modalBody {
+  padding: 25px;
+  font-family: 'Poppins', sans-serif;
+}
+/* Secciones de información */
+.serviceDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.infoSection {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+.infoSection:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+.infoSection h3 {
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.infoSection h3 i {
+  color: #f39c12;
+}
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.fullWidth {
+  grid-column: 1 / -1;
+}
+.infoItem label {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.infoItem span {
+  font-size: 1rem;
+  color: #333;
+}
+.precio {
+  font-weight: 600;
+  color: #d35400;
+}
+.placas {
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background-color: #f1f1f1;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+/* Botón para cerrar */
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.closeBtn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #e74c3c;
+  transform: rotate(90deg);
+}
+/* Estilos para formularios y selects */
+.selectContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+.selectOperador {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  appearance: none;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  font-size: 1rem;
+}
+.selectOperador:focus {
+  border-color: #f39c12;
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+  outline: none;
+}
+.selectOperador:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.selectArrow {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+.operatorPreview {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  border-left: 4px solid #f39c12;
+}
+.operatorPreview h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+.operatorPreview p {
+  margin: 5px 0;
+  color: #333;
+}
+.inputWithIcon {
+  position: relative;
+}
+.inputWithIcon i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+.input {
+  width: 100%;
+  padding: 12px 15px 12px 35px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+.input:focus {
+  border-color: #f39c12;
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+  outline: none;
+}
+.input:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.error {
+  border-color: #e74c3c;
+  animation: shake 0.5s;
+}
+/* Sección de costos */
+.costDetails, .confirmPoliza {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+.costosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.costoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.costoItem label {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+.costConfirmed, .polizaConfirmada {
+  color: #27ae60;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 8px 12px;
+  background-color: rgba(46, 204, 113, 0.2);
+  border-radius: 6px;
+}
+.polizaError {
+  color: #e74c3c;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 8px 12px;
+  background-color: rgba(231, 76, 60, 0.2);
+  border-radius: 6px;
+}
+/* Sección de póliza */
+.polizaInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.inputGroup label {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+/* Totales */
+.totales {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+.totales h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.totalesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.totalItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.totalItem span:first-child {
+  color: #666;
+}
+.totalItem span:last-child {
+  font-weight: 500;
+}
+.totalFinal {
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: 5px;
+}
+.totalFinal span:last-child {
+  color: #d35400;
+}
+/* Botones de acción */
+.actionContainer {
+  margin-top: 20px;
+}
+.actionContainer h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.btnAction {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.btnAction:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.btnAction:active {
+  transform: translateY(0);
+}
+.btnAction:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btnAsignar {
+  background-color: #f39c12;
+  color: white;
+}
+.btnIniciar {
+  background-color: #2ecc71;
+  color: white;
+}
+.btnCancelar {
+  background-color: #e74c3c;
+  color: white;
+}
+.btnRecordar {
+  background-color: #9b59b6;
+  color: white;
+}
+.btnReasignar {
+  background-color: #3498db;
+  color: white;
+}
+.btnConfirmarDetalles,
+.btnConfirmarPoliza {
+  background-color: #2c3e50;
+  color: white;
+}
+.btnCompletar {
+  background-color: #2ecc71;
+  color: white;
+  animation: pulse 2s infinite;
+}
+/* Diálogo de confirmación */
+.confirmationOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;
+}
+.confirmationDialog {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+.confirmationDialog h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #333;
+}
+.confirmationDialog p {
+  color: #666;
+  margin-bottom: 20px;
+}
+.confirmationButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.btnCancel, .btnConfirm {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btnCancel {
+  background-color: #f1f2f6;
+  color: #333;
+}
+.btnConfirm {
+  background-color: #f39c12;
+  color: white;
+}
+/* Notificaciones */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1300;
+  transform: translateX(120%);
+  transition: transform 0.3s ease;
+  max-width: 350px;
+}
+.notificationShow {
+  transform: translateX(0);
+}
+.notificationSuccess {
+  border-left: 4px solid #2ecc71;
+}
+.notificationError {
+  border-left: 4px solid #e74c3c;
+}
+.notificationContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.notificationContent i {
+  font-size: 1.2rem;
+}
+.notificationSuccess i {
+  color: #2ecc71;
+}
+.notificationError i {
+  color: #e74c3c;
+}
+.notificationContent p {
+  margin: 0;
+  color: #333;
+  font-weight: 500;
+}
+/* Historial de eventos */
+.historyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.historyItem {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #f39c12;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.historyIcon {
+  background-color: rgba(243, 156, 18, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d35400;
+  flex-shrink: 0;
+}
+.historyContent {
+  flex-grow: 1;
+}
+.historyTitle {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+.historyDate {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+.historyDescription {
+  color: #333;
+  font-size: 0.95rem;
+}
+.historyItemAsignado {
+  border-left-color: #f39c12;
+}
+.historyItemAsignado .historyIcon {
+  background-color: rgba(243, 156, 18, 0.2);
+  color: #d35400;
+}
+.historyItemIniciado {
+  border-left-color: #3498db;
+}
+.historyItemIniciado .historyIcon {
+  background-color: #d6eaf8;
+  color: #2980b9;
+}
+.historyItemCompletado {
+  border-left-color: #2ecc71;
+}
+.historyItemCompletado .historyIcon {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #27ae60;
+}
+.historyItemCancelado {
+  border-left-color: #e74c3c;
+}
+.historyItemCancelado .historyIcon {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+}
+/* Animaciones */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .modalContent {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .modalHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .estadoBadge {
+    align-self: flex-start;
+  }
+  
+  .polizaInputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+  
+  .btnAction {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 15px;
+  }
+  
+  .tabsContainer {
+    gap: 5px;
+  }
+  
+  .tab {
+    padding: 12px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .infoGrid, .costosGrid {
+    grid-template-columns: 1fr;
+  }
+}
